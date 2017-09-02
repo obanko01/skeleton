@@ -17,8 +17,8 @@ CREATE TABLE tags (
   tag_name VARCHAR(255),
   UNIQUE(receipt_id, tag_name),
 
-  PRIMARY KEY (receipt_id, tag_name)
---   FOREIGN KEY (receipt_id) REFERENCES receipts(id)
+  PRIMARY KEY (receipt_id, tag_name),
+  FOREIGN KEY (receipt_id) REFERENCES receipts(id)
 
 );
 
