@@ -1,6 +1,9 @@
 import controllers.HelloWorldController;
 import controllers.ReceiptController;
+import controllers.TagController;
+import controllers.NetController;
 import dao.ReceiptDao;
+import dao.TagDao;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Environment;
@@ -23,6 +26,7 @@ public class SimpleApplication extends Application<Configuration> {
         // For now we are just going to use an H2 Database.  We'll upgrade to mysql later
         // This connection string tells H2 to initialize itself with our schema.sql before allowing connections
         final String jdbcUrl = "jdbc:h2:mem:test;MODE=MySQL;INIT=RUNSCRIPT from 'classpath:schema.sql'";
+//        JdbcConnectionPool cp = JdbcConnectionPool.create("jdbc:h2:/tmp/test;MODE=MySQL", "sa", "sa");
         JdbcConnectionPool cp = JdbcConnectionPool.create(jdbcUrl, "sa", "sa");
 
         // This sets up jooq to talk to whatever database we are using.
@@ -37,10 +41,13 @@ public class SimpleApplication extends Application<Configuration> {
         // Create any global resources you need here
         org.jooq.Configuration jooqConfig = setupJooq();
         ReceiptDao receiptDao = new ReceiptDao(jooqConfig);
+        TagDao tagDao = new TagDao(jooqConfig);
 
         // Register all Controllers below.  Don't forget 
         // you need class and method @Path annotations!
         env.jersey().register(new HelloWorldController());
         env.jersey().register(new ReceiptController(receiptDao));
+        env.jersey().register(new TagController(tagDao));
+        env.jersey().register(new NetController());
     }
 }

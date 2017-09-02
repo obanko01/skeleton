@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/obanko01/skeleton.svg?style=svg)](https://circleci.com/gh/obanko01/skeleton)
 [![CircleCI](https://circleci.com/gh/amfleming/skeleton.svg?style=svg)](https://circleci.com/gh/amfleming/skeleton)
 
 
