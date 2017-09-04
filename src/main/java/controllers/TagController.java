@@ -24,8 +24,10 @@ public class TagController {
     }
 
     @PUT
-    public void toggleTag(CreateTagRequest tag, @PathParam("tag") String tagName) {
-        tags.insert(tag.receiptId, tagName);
+//    public void toggleTag(CreateTagRequest tag, @PathParam("tag") String tagName) {
+//        tags.insert(tag.receiptId, tagName);
+    public void toggleTag(int receiptId, @PathParam("tag") String tagName) {
+        tags.insert(receiptId, tagName);
     }
 
     @GET

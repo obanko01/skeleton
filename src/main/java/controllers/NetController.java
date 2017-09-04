@@ -8,7 +8,8 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-@Path("/netId")
+@Path("/netid")
+//@Path("")
 //@Consumes(MediaType.APPLICATION_JSON)
 //@Produces(MediaType.APPLICATION_JSON)
 @Produces(MediaType.TEXT_PLAIN)
