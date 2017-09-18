@@ -1,6 +1,7 @@
 package api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import generated.tables.records.ReceiptsRecord;
 
 import java.math.BigDecimal;
@@ -26,6 +27,7 @@ public class ReceiptResponse {
     BigDecimal value;
 
     @JsonProperty
+    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     Time created;
 
     public ReceiptResponse(ReceiptsRecord dbRecord) {

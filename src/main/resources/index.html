@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Receipt Application App</title>
+    <!--<link rel="stylesheet" type="text/css" href="/css/style.css">-->
+    <style>
+        .divTable{
+            display: table;
+            width: 100%;
+        }
+        .content {
+            display: table-row;
+        }
+        .tableCell {
+            border: 1px solid #999999;
+            display: table-cell;
+            padding: 3px 10px;
+        }
+    </style>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="top-header"> This app is so amazing, believe me! <i id="add-receipt" class="fa fa-plus" aria-hidden="true"></i></div>
+
+<div>
+    <div id="receiptList" class="divTable">
+        <div class="content">
+            <div class="tableCell">Time</div>
+            <div class="tableCell">Merchant</div>
+            <div class="tableCell">Mulla</div>
+            <div class="tableCell">Tags</div>
+        </div>
+        <div class="content receipt">
+            <div class="tableCell">10:00 am</div>
+            <div class="tableCell merchant">Seye</div>
+            <div class="tableCell amount">$10</div>
+            <div class="tableCell tags">
+                <button class="tagValue">
+                    Insane <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <button id="add-tag">
+                    <i class="fa fa-plus-circle" aria-hidden="true">Add tag</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $('#add-receipt').click(function (){
+        $('.top-header').after('<form id="form-submit">\n' +
+            '    <input type="text" name="Merchant" value="merchant" id="merchant">\n' +
+            '    <br>\n' +
+            '    <input type="text" name="Amount" value="10" id="amount">\n' +
+            '    <br>\n' +
+            '    <input type="reset" value="Cancel" id="cancel-receipt">\n' +
+            '    <input type="submit" value="Submit" id="save-receipt">\n' +
+            '</form>')
+    });
+
+//    $('#add-tag').click(function (){
+    $(document).on('click', '#add-tag', function() {
+       $(this).after('<form id="tag-submit">' +
+           '<input type="text" name="tag" value="add tag" id="tag-input">' +
+           '<input type="submit" value="Submit" id="save-tag" style="display: none">' +
+           '</form>');
+       $(this).detach();
+    });
+
+    $(document).on('click', '#save-tag', function(e) {
+        e.preventDefault();
+        var data = $('#tag-submit').serializeArray();
+        var receiptId = $(this).parent().parent()[0].id;
+        $.ajax({
+            url: '/tags/' + data[0]['value'],
+//            url: 'http://ec2-34-229-45-22.compute-1.amazonaws.com/tags/{tag}',
+            method: 'PUT',
+            data: receiptId,
+            contentType: "application/json",
+            success: function(){
+                $('<button class="tagValue">\n' +
+                    '                    '+ data[0].value + ' <i class="fa fa-times" aria-hidden="true"></i>\n' +
+                    '                </button>').appendTo($('#'+receiptId));
+
+            }
+        }).done(function(){
+            $('<button id="add-tag">\n' +
+                '<i class="fa fa-plus-circle" aria-hidden="true">Add tag</i>\n' +
+                '</button>').appendTo($('#'+receiptId));
+        });
+        $('#tag-submit').detach();
+
+    });
+
+//    This is for handling the post form for sending merchant, amount data to the server
+    $(document).on('click', '#cancel-receipt', function(e) {
+        e.preventDefault();
+        $('#form-submit').detach();
+    });
+
+    $(document).on('click', '#save-receipt', function(e) {
+        e.preventDefault();
+        var data = $('#form-submit').serializeArray();
+        $.ajax({
+            url: '/receipts',
+//            url: 'http://ec2-34-229-45-22.compute-1.amazonaws.com/receipts',
+            method: 'POST',
+            data: JSON.stringify({"merchant": data[0]['value'] , "amount": data[1]['value']}),
+            contentType: "application/json",
+            success: function(data){
+                console.log(data);
+            }
+        }).done(function(){
+            console.log("Done")
+        });
+        $('#form-submit').detach();
+    });
+
+//    $(document).on('click', '#tag-input', function(e) {
+//        e.preventDefault();
+//        var receiptId = $(this).parent().id;
+//        console.log(receiptId);
+//        var data = $('#tag_input').serializeArray();
+//        $.ajax({
+////            url: '/tags/{tag}',
+//            url: 'http://ec2-34-229-45-22.compute-1.amazonaws.com/tags/{tag}',
+//            method: 'PUT',
+//            data: JSON.stringify({"merchant": data[0]['value'] , "amount": data[1]['value']}),
+//            contentType: "application/json",
+//            success: function(data){
+//                console.log(data);
+//
+//            }
+//        }).done(function(){
+//            console.log("Done")
+//        });
+//        $('#form-submit').detach();
+//    <button>
+//        Insane <i class="fa fa-times" aria-hidden="true"></i>
+//    </button>
+//    });
+
+    $(function(){
+//    $(document).on(){
+        $.getJSON("/receipts", function(receipts){
+            var items = [];
+            $.each(receipts, function(key, val) {
+                console.log(val.created);
+                items.push('<div class="content receipt"> <div class="tableCell">' + val.created + '</div> ' +
+                    '<div class="tableCell merchant">' + val.merchantName + '</div>' +
+                    '<div class="tableCell amount">' + val.value + '</div>' +
+                    '<div class="tableCell tags" id="'+ val.id + '">' +
+                    '<button id="add-tag">\n' +
+                    '<i class="fa fa-plus-circle" aria-hidden="true">Add tag</i>\n' +
+                    '</button></div></div>')
+            });
+            $(items.join("")).appendTo($("#receiptList"));
+//        for(var i=0; i < receipts.length; i++) {
+//            var receipt = receipts[i];
+////            $('<div class="receipt">${receipt.merchantName}<div><span class="receiptTag">t1</span></div></div>').appendTo($("#receiptList"));
+//            var elem = '<div class="content receipt"> <div class="tableCell">${receipt.created}</div> ' +
+//                '<div class="tableCell merchant">${receipt.merchantName}</div>' +
+//                '<div class="tableCell amount">${receipt.amount}</div>' +
+//                '<div class="tableCell tags">'
+//            var elem_tags = '';
+////            for (var i=0; i<receipt.tags.length; i++){
+////                var tag = receipt.tags[i];
+////                var elem_tags = '<button class="tagValue">\n' +
+////                    '             ${tag} <i class="fa fa-times" aria-hidden="true"></i>\n' +
+////                    '        </button>'
+////            }
+//           $(elem + elem_tags + '<button id="add-tag">\n' +
+//            '            <i class="fa fa-plus-circle" aria-hidden="true">Add tag</i>\n' +
+//            '        </button></div>').appendTo($("#receiptList"));
+//        }
+        });
+    });
+
+    function timeSince(date) {
+
+        var seconds = Math.floor((new Date() - date) / 1000);
+
+        var interval = Math.floor(seconds / 31536000);
+
+        if (interval > 1) {
+            return interval + " years";
+        }
+        interval = Math.floor(seconds / 2592000);
+        if (interval > 1) {
+            return interval + " months";
+        }
+        interval = Math.floor(seconds / 86400);
+        if (interval > 1) {
+            return interval + " days";
+        }
+        interval = Math.floor(seconds / 3600);
+        if (interval > 1) {
+            return interval + " hours";
+        }
+        interval = Math.floor(seconds / 60);
+        if (interval > 1) {
+            return interval + " minutes";
+        }
+        return Math.floor(seconds) + " seconds";
+    }
+</script>
+</html>
+
+
+
+    </div>
+</div>

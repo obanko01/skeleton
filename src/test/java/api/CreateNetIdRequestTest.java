@@ -1,39 +1,35 @@
-package api;
+import controllers;
 
 
 import io.dropwizard.jersey.validation.Validators;
 import org.junit.Test;
 
 import javax.validation.Validator;
-import java.math.BigDecimal;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
 
-public class CreateTagRequestTest {
+public class NetIdRequestTest {
 
     private final Validator validator = Validators.newValidator();
 
     @Test
     public void testValid() {
-        CreateTagRequest tag = new CreateTagRequest();
+        NetID = new NetController();
+
+        CreateTagRequest tag = new CreateNETRequest();
         tag.tagName = "OBoi";
+
         tag.receiptId = 1;
         assertThat(validator.validate(tag), empty());
     }
 
     @Test
-    public void testMissingTagName() {
-        CreateTagRequest tag = new CreateTagRequest();
-        tag.tagName = "OBoi";
-        assertThat(validator.validate(tag), empty());
-    }
-
-    @Test
-    public void testMissingTagReceiptId() {
+    public void testMissingResponse() {
         CreateTagRequest tag = new CreateTagRequest();
         tag.receiptId = 1;
-        assertThat(validator.validate(tag), empty());
+
+        assertThat(validator.validate(tag), hasSize(0));
     }
 }

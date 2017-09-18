@@ -2,6 +2,8 @@ import controllers.HelloWorldController;
 import controllers.ReceiptController;
 import controllers.TagController;
 import controllers.NetController;
+import controllers.HtmlController;
+import controllers.TagReceiptController;
 import dao.ReceiptDao;
 import dao.TagDao;
 import io.dropwizard.Application;
@@ -46,8 +48,10 @@ public class SimpleApplication extends Application<Configuration> {
         // Register all Controllers below.  Don't forget 
         // you need class and method @Path annotations!
         env.jersey().register(new HelloWorldController());
+        env.jersey().register(new HtmlController());
         env.jersey().register(new ReceiptController(receiptDao));
         env.jersey().register(new TagController(tagDao));
         env.jersey().register(new NetController());
+        env.jersey().register(new TagReceiptController(tagDao));
     }
 }

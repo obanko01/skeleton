@@ -15,6 +15,6 @@ import java.math.BigDecimal;
 public class CreateReceiptRequest {
     @NotEmpty
     public String merchant;
-
+//    @NotEmpty
     public BigDecimal amount;
 }

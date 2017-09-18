@@ -42,5 +42,11 @@ public class TagDao {
                 .on(TAGS.RECEIPT_ID.eq(RECEIPTS.ID).and(TAGS.TAG_NAME.eq(tagName)))
                 .fetchInto(ReceiptsRecord.class);
     }
+
+    public List<TagsRecord> getAllTagsWithReceipt(int receiptId) {
+        return dsl.select().from(TAGS)
+                .join(RECEIPTS)
+                .on(RECEIPTS.ID.eq(TAGS.RECEIPT_ID).and(RECEIPTS.ID.eq(receiptId)))
+                .fetchInto(TagsRecord.class);
+    }
 }
-//&& tagsRecord.getReceiptId() != null
