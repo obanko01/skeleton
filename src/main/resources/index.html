@@ -52,6 +52,7 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+//    Shows the receipt form, adds it to the DOM when user clicks on plus icon
     $('#add-receipt').click(function (){
         $('.top-header').after('<form id="form-submit">\n' +
             '    <input type="text" name="Merchant" value="merchant" id="merchant">\n' +
@@ -63,6 +64,7 @@
             '</form>')
     });
 
+//    Shows input box so user can add tag
 //    $('#add-tag').click(function (){
     $(document).on('click', '#add-tag', function() {
        $(this).after('<form id="tag-submit">' +
@@ -72,6 +74,7 @@
        $(this).detach();
     });
 
+//    Saves tag when user submit tag form
     $(document).on('click', '#save-tag', function(e) {
         e.preventDefault();
         var data = $('#tag-submit').serializeArray();
@@ -95,6 +98,23 @@
         });
         $('#tag-submit').detach();
 
+    });
+
+//  Should remove tag when user clicks on tag
+    $(document).on('click', '.tagValue', function(e) {
+        var receiptId = $(this).parent()[0].id;
+        var tagValue = $(this)[0].innerText.trim();
+        var butt = $(this);
+        $.ajax({
+            url: '/tags/' + tagValue,
+//            url: 'http://ec2-34-229-45-22.compute-1.amazonaws.com/tags/ + tagValue',
+            method: 'PUT',
+            data: receiptId,
+            contentType: "application/json",
+            success: function(){
+                butt.detach();
+            }
+        });
     });
 
 //    This is for handling the post form for sending merchant, amount data to the server
@@ -155,11 +175,13 @@
                     '<div class="tableCell merchant">' + val.merchantName + '</div>' +
                     '<div class="tableCell amount">' + val.value + '</div>' +
                     '<div class="tableCell tags" id="'+ val.id + '">' +
-                    '<button id="add-tag">\n' +
+                    '<button id="add-tag">\n' + getTags(val.id) +
                     '<i class="fa fa-plus-circle" aria-hidden="true">Add tag</i>\n' +
                     '</button></div></div>')
             });
             $(items.join("")).appendTo($("#receiptList"));
+
+
 //        for(var i=0; i < receipts.length; i++) {
 //            var receipt = receipts[i];
 ////            $('<div class="receipt">${receipt.merchantName}<div><span class="receiptTag">t1</span></div></div>').appendTo($("#receiptList"));
@@ -180,6 +202,22 @@
 //        }
         });
     });
+
+//  function for getting tags on receipts
+    function getTags(id){
+        $.getJSON("/receipt/tags/" + id, function(tags){
+            var items = [];
+            console.log(tags);
+            $.each(tags, function(key, value){
+                if (value !== undefined){
+                    items.push('<button class="tagValue">\n' +
+                        '                    '+ val.tagName + ' <i class="fa fa-times" aria-hidden="true"></i>\n' +
+                        '                </button>');
+                };
+            });
+            return items.join("");
+        });
+    };
 
     function timeSince(date) {
 
