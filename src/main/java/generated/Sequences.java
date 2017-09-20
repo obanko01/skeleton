@@ -24,12 +24,12 @@ import org.jooq.impl.SequenceImpl;
 public class Sequences {
 
 	/**
-	 * The sequence <code>public.system_sequence_4ba37580_2b7c_4813_a31a_23791de6c89a</code>
+	 * The sequence <code>public.system_sequence_0de0d134_4e17_4d91_af18_0bcb7a491c61</code>
 	 */
-	public static final Sequence<Long> SYSTEM_SEQUENCE_4BA37580_2B7C_4813_A31A_23791DE6C89A = new SequenceImpl<Long>("system_sequence_4ba37580_2b7c_4813_a31a_23791de6c89a", Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT);
+	public static final Sequence<Long> SYSTEM_SEQUENCE_0DE0D134_4E17_4D91_AF18_0BCB7A491C61 = new SequenceImpl<Long>("system_sequence_0de0d134_4e17_4d91_af18_0bcb7a491c61", Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT);
 
 	/**
-	 * The sequence <code>public.system_sequence_d734fb96_60cc_4852_97d1_30425158fb2c</code>
+	 * The sequence <code>public.system_sequence_10076891_b5fd_48c4_aa26_5866992b10d3</code>
 	 */
-	public static final Sequence<Long> SYSTEM_SEQUENCE_D734FB96_60CC_4852_97D1_30425158FB2C = new SequenceImpl<Long>("system_sequence_d734fb96_60cc_4852_97d1_30425158fb2c", Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT);
+	public static final Sequence<Long> SYSTEM_SEQUENCE_10076891_B5FD_48C4_AA26_5866992B10D3 = new SequenceImpl<Long>("system_sequence_10076891_b5fd_48c4_aa26_5866992b10d3", Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT);
 }

@@ -6,6 +6,7 @@ import generated.tables.records.ReceiptsRecord;
 
 import java.math.BigDecimal;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  * This is an API Object.  Its purpose is to model the JSON API that we expose.
@@ -27,8 +28,8 @@ public class ReceiptResponse {
     BigDecimal value;
 
     @JsonProperty
-    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-    Time created;
+//    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss a z")
+    Timestamp created;
 
     public ReceiptResponse(ReceiptsRecord dbRecord) {
         this.merchantName = dbRecord.getMerchant();

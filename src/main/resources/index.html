@@ -30,21 +30,8 @@
         <div class="content">
             <div class="tableCell">Time</div>
             <div class="tableCell">Merchant</div>
-            <div class="tableCell">Mulla</div>
+            <div class="tableCell">$</div>
             <div class="tableCell">Tags</div>
-        </div>
-        <div class="content receipt">
-            <div class="tableCell">10:00 am</div>
-            <div class="tableCell merchant">Seye</div>
-            <div class="tableCell amount">$10</div>
-            <div class="tableCell tags">
-                <button class="tagValue">
-                    Insane <i class="fa fa-times" aria-hidden="true"></i>
-                </button>
-                <button id="add-tag">
-                    <i class="fa fa-plus-circle" aria-hidden="true">Add tag</i>
-                </button>
-            </div>
         </div>
     </div>
 </div>
@@ -89,7 +76,6 @@
                 $('<button class="tagValue">\n' +
                     '                    '+ data[0].value + ' <i class="fa fa-times" aria-hidden="true"></i>\n' +
                     '                </button>').appendTo($('#'+receiptId));
-
             }
         }).done(function(){
             $('<button id="add-tag">\n' +
@@ -133,118 +119,95 @@
             data: JSON.stringify({"merchant": data[0]['value'] , "amount": data[1]['value']}),
             contentType: "application/json",
             success: function(data){
-                console.log(data);
+//                console.log(data);
             }
-        }).done(function(){
-            console.log("Done")
+        }).done(function(data){
+            // If post is successful, add tag back and attach data to DOM
+//            console.log("Done");
+            $('<div class="content receipt"> <div class="tableCell">' + timeSince(data[0].created) + '</div> ' +
+                '<div class="tableCell merchant">' + data[0].merchantName + '</div>' +
+                '<div class="tableCell amount">' + data[0].value + '</div>' +
+                '<div class="tableCell tags" id="'+ data[0].id + '">' +
+                '</div></div>').appendTo("#receiptList");
+            getTags(data[0].id);
+            $('<button id="add-tag">\n' +
+                '<i class="fa fa-plus-circle" aria-hidden="true">Add tag</i>\n' +
+                '</button>').appendTo($('#'+data[0].id))
         });
         $('#form-submit').detach();
     });
 
-//    $(document).on('click', '#tag-input', function(e) {
-//        e.preventDefault();
-//        var receiptId = $(this).parent().id;
-//        console.log(receiptId);
-//        var data = $('#tag_input').serializeArray();
-//        $.ajax({
-////            url: '/tags/{tag}',
-//            url: 'http://ec2-34-229-45-22.compute-1.amazonaws.com/tags/{tag}',
-//            method: 'PUT',
-//            data: JSON.stringify({"merchant": data[0]['value'] , "amount": data[1]['value']}),
-//            contentType: "application/json",
-//            success: function(data){
-//                console.log(data);
-//
-//            }
-//        }).done(function(){
-//            console.log("Done")
-//        });
-//        $('#form-submit').detach();
-//    <button>
-//        Insane <i class="fa fa-times" aria-hidden="true"></i>
-//    </button>
-//    });
-
+//  function gets all receipts
     $(function(){
 //    $(document).on(){
         $.getJSON("/receipts", function(receipts){
             var items = [];
             $.each(receipts, function(key, val) {
-                console.log(val.created);
-                items.push('<div class="content receipt"> <div class="tableCell">' + val.created + '</div> ' +
+                $('<div class="content receipt"> <div class="tableCell">' + timeSince(val.created) + '</div> ' +
                     '<div class="tableCell merchant">' + val.merchantName + '</div>' +
                     '<div class="tableCell amount">' + val.value + '</div>' +
                     '<div class="tableCell tags" id="'+ val.id + '">' +
-                    '<button id="add-tag">\n' + getTags(val.id) +
+                    '</div></div>').appendTo("#receiptList");
+                getTags(val.id);
+                $('<button id="add-tag">\n' +
                     '<i class="fa fa-plus-circle" aria-hidden="true">Add tag</i>\n' +
-                    '</button></div></div>')
+                    '</button>').appendTo($('#'+val.id))
             });
-            $(items.join("")).appendTo($("#receiptList"));
-
-
-//        for(var i=0; i < receipts.length; i++) {
-//            var receipt = receipts[i];
-////            $('<div class="receipt">${receipt.merchantName}<div><span class="receiptTag">t1</span></div></div>').appendTo($("#receiptList"));
-//            var elem = '<div class="content receipt"> <div class="tableCell">${receipt.created}</div> ' +
-//                '<div class="tableCell merchant">${receipt.merchantName}</div>' +
-//                '<div class="tableCell amount">${receipt.amount}</div>' +
-//                '<div class="tableCell tags">'
-//            var elem_tags = '';
-////            for (var i=0; i<receipt.tags.length; i++){
-////                var tag = receipt.tags[i];
-////                var elem_tags = '<button class="tagValue">\n' +
-////                    '             ${tag} <i class="fa fa-times" aria-hidden="true"></i>\n' +
-////                    '        </button>'
-////            }
-//           $(elem + elem_tags + '<button id="add-tag">\n' +
-//            '            <i class="fa fa-plus-circle" aria-hidden="true">Add tag</i>\n' +
-//            '        </button></div>').appendTo($("#receiptList"));
-//        }
         });
+
     });
 
 //  function for getting tags on receipts
     function getTags(id){
-        $.getJSON("/receipt/tags/" + id, function(tags){
-            var items = [];
-            console.log(tags);
-            $.each(tags, function(key, value){
-                if (value !== undefined){
-                    items.push('<button class="tagValue">\n' +
-                        '                    '+ val.tagName + ' <i class="fa fa-times" aria-hidden="true"></i>\n' +
-                        '                </button>');
-                };
-            });
-            return items.join("");
+        $.ajax({
+            url: "/tags/receipts/" + id,
+//            url: 'http://ec2-34-229-45-22.compute-1.amazonaws.com/receipts' + id,
+            method: 'GET',
+            async: false,
+            contentType: "application/json",
+            success: function(tags){
+//                console.log(tags);
+                for(var i=0; i < tags.length; i++) {
+                    var tag = tags[i]; var id = this.url.match(/\d+/)[0];
+                    console.log(tag.tagName);
+                    console.log(id);
+                    $('<button class="tagValue">\n' +
+                        '                    '+ tag.tagName + ' <i class="fa fa-times" aria-hidden="true"></i>\n' +
+                        '                </button>').appendTo($('#'+id));
+                }
+            }
+        }).done(function(){
+//            console.log("Done");
         });
     };
 
     function timeSince(date) {
-
-        var seconds = Math.floor((new Date() - date) / 1000);
+//        console.log(Date(''+date));
+//        var seconds = Math.floor(new Date().getTime() - new Date(''+date).getTime()) / 1000;
+        var seconds = Math.floor(new Date().getTime() - date)/1000; // in seconds
 
         var interval = Math.floor(seconds / 31536000);
 
         if (interval > 1) {
-            return interval + " years";
+            return interval + " years ago";
         }
         interval = Math.floor(seconds / 2592000);
         if (interval > 1) {
-            return interval + " months";
+            return interval + " months ago";
         }
         interval = Math.floor(seconds / 86400);
         if (interval > 1) {
-            return interval + " days";
+            return interval + " days ago";
         }
         interval = Math.floor(seconds / 3600);
         if (interval > 1) {
-            return interval + " hours";
+            return interval + " hrs ago";
         }
         interval = Math.floor(seconds / 60);
         if (interval > 1) {
-            return interval + " minutes";
+            return interval + " mins ago";
         }
-        return Math.floor(seconds) + " seconds";
+        return Math.floor(seconds) + " secs ago";
     }
 </script>
 </html>

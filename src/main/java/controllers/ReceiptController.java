@@ -24,8 +24,12 @@ public class ReceiptController {
     }
 
     @POST
-    public int createReceipt(@Valid @NotNull CreateReceiptRequest receipt) {
-        return receipts.insert(receipt.merchant, receipt.amount);
+//    rewrote this part of the code so the data posts the outcome of the receipt process automatically
+//    public int createReceipt(@Valid @NotNull CreateReceiptRequest receipt) {
+    public List<ReceiptResponse> createReceipt(@Valid @NotNull CreateReceiptRequest receipt){
+//        return receipts.insert(receipt.merchant, receipt.amount);
+        List<ReceiptsRecord> receiptRecords = receipts.insert(receipt.merchant, receipt.amount);
+        return receiptRecords.stream().map(ReceiptResponse::new).collect(toList());
 //        return 99;
     }
 
