@@ -52,10 +52,10 @@
     });
 
 //    Shows input box so user can add tag
-//    $('#add-tag').click(function (){
-    $(document).on('click', '#add-tag', function() {
+//    $('.add-tag').click(function (){
+    $(document).on('click', '.add-tag', function() {
        $(this).after('<form id="tag-submit">' +
-           '<input type="text" name="tag" value="add tag" class="tag-input">' +
+           '<input type="text" name="tag" class="tag_input">' +
            '<input type="submit" value="Submit" id="save-tag" style="display: none">' +
            '</form>');
        $(this).detach();
@@ -78,7 +78,7 @@
                     '                </button>').appendTo($('#'+receiptId));
             }
         }).done(function(){
-            $('<button id="add-tag">\n' +
+            $('<button class="add-tag">\n' +
                 '<i class="fa fa-plus-circle" aria-hidden="true">Add tag</i>\n' +
                 '</button>').appendTo($('#'+receiptId));
         });
@@ -130,7 +130,7 @@
                 '<div class="tableCell tags" id="'+ data[0].id + '">' +
                 '</div></div>').appendTo("#receiptList");
             getTags(data[0].id);
-            $('<button id="add-tag">\n' +
+            $('<button class="add-tag">\n' +
                 '<i class="fa fa-plus-circle" aria-hidden="true">Add tag</i>\n' +
                 '</button>').appendTo($('#'+data[0].id))
         });
@@ -149,7 +149,7 @@
                     '<div class="tableCell tags" id="'+ val.id + '">' +
                     '</div></div>').appendTo("#receiptList");
                 getTags(val.id);
-                $('<button id="add-tag">\n' +
+                $('<button class="add-tag">\n' +
                     '<i class="fa fa-plus-circle" aria-hidden="true">Add tag</i>\n' +
                     '</button>').appendTo($('#'+val.id))
             });
@@ -166,19 +166,14 @@
             async: false,
             contentType: "application/json",
             success: function(tags){
-//                console.log(tags);
                 for(var i=0; i < tags.length; i++) {
                     var tag = tags[i]; var id = this.url.match(/\d+/)[0];
-//                    console.log(tag.tagName);
-//                    console.log(id);
                     $('<button class="tagValue">\n' +
                         '                    '+ tag.tagName + ' <i class="fa fa-times" aria-hidden="true"></i>\n' +
                         '                </button>').appendTo($('#'+id));
                 }
             }
-        }).done(function(){
-//            console.log("Done");
-        });
+        })
     };
 
     function timeSince(date) {
