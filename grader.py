@@ -74,7 +74,6 @@ def add_tag(e):
     return tag
 
 def set_up(url):
-    print(url)
     driver = webdriver.Firefox()
     driver.implicitly_wait(1)
     driver.get(url)

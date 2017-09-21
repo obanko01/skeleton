@@ -5,34 +5,40 @@
     <title>Receipt Application App</title>
     <!--<link rel="stylesheet" type="text/css" href="/css/style.css">-->
     <style>
-        .divTable{
-            display: table;
-            width: 100%;
+        .main, .table-top {
+            margin-top: 40px;
         }
-        .content {
-            display: table-row;
-        }
-        .tableCell {
+        .rowCell {
             border: 1px solid #999999;
             display: table-cell;
             padding: 3px 10px;
         }
+        .add {
+            margin-top: 10px;
+        }
+        #receiptList {
+            display: table;
+            width: 100%;
+            border: 2px solid #000;
+        }
+        .content {
+            display: table-row;
+        }
     </style>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
-<div class="top-header"> This app is so amazing, believe me! <i id="add-receipt" class="fa fa-plus" aria-hidden="true"></i></div>
+<body class="container main">
+<div class="top-header"> This app is so amazing, believe me! </div>
 
-<div>
-    <div id="receiptList" class="divTable">
-        <div class="content">
-            <div class="tableCell">Time</div>
-            <div class="tableCell">Merchant</div>
-            <div class="tableCell">$</div>
-            <div class="tableCell">Tags</div>
-        </div>
+<div class="table-top">
+    <button id="add-receipt" class="btn btn-success">Add receipt</button>
+    <div id="receiptList" class="add">
+            <div class="rowCell">Time</div>
+            <div class="rowCell">Merchant</div>
+            <div class="rowCell">$</div>
+            <div class="rowCell">Tags</div>
     </div>
 </div>
 
@@ -42,9 +48,9 @@
 //    Shows the receipt form, adds it to the DOM when user clicks on plus icon
     $('#add-receipt').click(function (){
         $('.top-header').after('<form id="form-submit">\n' +
-            '    <input type="text" name="Merchant" value="merchant" id="merchant">\n' +
+            '    <input type="text" name="Merchant" id="merchant">\n' +
             '    <br>\n' +
-            '    <input type="text" name="Amount" value="10" id="amount">\n' +
+            '    <input type="text" name="Amount" id="amount">\n' +
             '    <br>\n' +
             '    <input type="reset" value="Cancel" id="cancel-receipt">\n' +
             '    <input type="submit" value="Submit" id="save-receipt">\n' +
@@ -73,13 +79,11 @@
             data: receiptId,
             contentType: "application/json",
             success: function(){
-                $('<button class="tagValue">\n' +
-                    '                    '+ data[0].value + ' <i class="fa fa-times" aria-hidden="true"></i>\n' +
+                $('<button class="tagValue btn btn-info">\n' + data[0]['value'] +
                     '                </button>').appendTo($('#'+receiptId));
             }
         }).done(function(){
-            $('<button class="add-tag">\n' +
-                '<i class="fa fa-plus-circle" aria-hidden="true">Add tag</i>\n' +
+            $('<button class="add-tag btn btn-info"> Add tag \n' +
                 '</button>').appendTo($('#'+receiptId));
         });
         $('#tag-submit').detach();
@@ -124,14 +128,13 @@
         }).done(function(data){
             // If post is successful, add tag back and attach data to DOM
 //            console.log("Done");
-            $('<div class="content receipt"> <div class="tableCell">' + timeSince(data[0].created) + '</div> ' +
-                '<div class="tableCell merchant">' + data[0].merchantName + '</div>' +
-                '<div class="tableCell amount">' + data[0].value + '</div>' +
-                '<div class="tableCell tags" id="'+ data[0].id + '">' +
+            $('<div class="content receipt"> <div class="rowCell">' + timeSince(data[0].created) + '</div> ' +
+                '<div class="rowCell merchant">' + data[0].merchantName + '</div>' +
+                '<div class="rowCell amount">' + data[0].value + '</div>' +
+                '<div class="rowCell tags" id="'+ data[0].id + '">' +
                 '</div></div>').appendTo("#receiptList");
             getTags(data[0].id);
-            $('<button class="add-tag">\n' +
-                '<i class="fa fa-plus-circle" aria-hidden="true">Add tag</i>\n' +
+            $('<button class="add-tag btn btn-info"> Add tag \n' +
                 '</button>').appendTo($('#'+data[0].id))
         });
         $('#form-submit').detach();
@@ -143,14 +146,13 @@
         $.getJSON("/receipts", function(receipts){
             var items = [];
             $.each(receipts, function(key, val) {
-                $('<div class="content receipt"> <div class="tableCell">' + timeSince(val.created) + '</div> ' +
-                    '<div class="tableCell merchant">' + val.merchantName + '</div>' +
-                    '<div class="tableCell amount">' + val.value + '</div>' +
-                    '<div class="tableCell tags" id="'+ val.id + '">' +
+                $('<div class="content receipt"> <div class="rowCell">' + timeSince(val.created) + '</div> ' +
+                    '<div class="rowCell merchant">' + val.merchantName + '</div>' +
+                    '<div class="rowCell amount">' + val.value + '</div>' +
+                    '<div class="rowCell tags" id="'+ val.id + '">' +
                     '</div></div>').appendTo("#receiptList");
                 getTags(val.id);
-                $('<button class="add-tag">\n' +
-                    '<i class="fa fa-plus-circle" aria-hidden="true">Add tag</i>\n' +
+                $('<button class="add-tag btn btn-info"> Add tag \n' +
                     '</button>').appendTo($('#'+val.id))
             });
         });
@@ -166,10 +168,13 @@
             async: false,
             contentType: "application/json",
             success: function(tags){
+//                console.log(tags);
                 for(var i=0; i < tags.length; i++) {
                     var tag = tags[i]; var id = this.url.match(/\d+/)[0];
-                    $('<button class="tagValue">\n' +
-                        '                    '+ tag.tagName + ' <i class="fa fa-times" aria-hidden="true"></i>\n' +
+//                    console.log(tag.tagName);
+//                    console.log(id);
+                    $('<button class="tagValue btn btn-info">\n' +
+                        '                    '+ tag.tagName +
                         '                </button>').appendTo($('#'+id));
                 }
             }

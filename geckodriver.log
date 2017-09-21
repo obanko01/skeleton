@@ -1,0 +1,107 @@
+1505960676026	geckodriver	INFO	geckodriver 0.19.0
+1505960676035	geckodriver	INFO	Listening on 127.0.0.1:54867
+1505960678275	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-profile" "/var/folders/l5/fw9ky5pn64z1973yw9x2n1bh0000gn/T/rust_mozprofile.GhXdBuElYRUB"
+1505960679051	addons.xpi	WARN	Error parsing extensions state: [Exception... "Component returned failure code: 0x80520012 (NS_ERROR_FILE_NOT_FOUND) [amIAddonManagerStartup.readStartupData]"  nsresult: "0x80520012 (NS_ERROR_FILE_NOT_FOUND)"  location: "JS frame :: resource://gre/modules/addons/XPIProvider.jsm :: loadExtensionState :: line 1596"  data: no] Stack trace: loadExtensionState()@resource://gre/modules/addons/XPIProvider.jsm:1596 < getInstallState()@resource://gre/modules/addons/XPIProvider.jsm:1631 < checkForChanges()@resource://gre/modules/addons/XPIProvider.jsm:3152 < startup()@resource://gre/modules/addons/XPIProvider.jsm:2246 < callProvider()@resource://gre/modules/AddonManager.jsm:271 < _startProvider()@resource://gre/modules/AddonManager.jsm:741 < startup()@resource://gre/modules/AddonManager.jsm:908 < startup()@resource://gre/modules/AddonManager.jsm:3122 < observe()@jar:file:///Applications/Firefox.app/Contents/Resources/omni.ja!/components/addonManager.js:65
+1505960679561	Marionette	INFO	Enabled via --marionette
+1505960681789	Marionette	INFO	Listening on port 54876
+JavaScript error: chrome://marionette/content/server.js, line 337: NS_ERROR_SOCKET_ADDRESS_IN_USE: Component returned failure code: 0x804b0036 (NS_ERROR_SOCKET_ADDRESS_IN_USE) [nsIServerSocket.initSpecialConnection]
+1505960681832	Marionette	WARN	TLS certificate errors will be ignored for this session
+2017-09-20 22:24:41.884 plugin-container[86994:6873919] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xa13f, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2017-09-20 22:24:41.885 plugin-container[86994:6873919] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xa403, name = 'com.apple.CFPasteboardClient'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+1505960681931	Marionette	DEBUG	loaded listener.js
+1505960681951	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1505960681958	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1505960713246	geckodriver	INFO	geckodriver 0.19.0
+1505960713251	geckodriver	INFO	Listening on 127.0.0.1:54964
+1505960714405	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-profile" "/var/folders/l5/fw9ky5pn64z1973yw9x2n1bh0000gn/T/rust_mozprofile.qBliGbovfbsP"
+1505960714686	addons.xpi	WARN	Error parsing extensions state: [Exception... "Component returned failure code: 0x80520012 (NS_ERROR_FILE_NOT_FOUND) [amIAddonManagerStartup.readStartupData]"  nsresult: "0x80520012 (NS_ERROR_FILE_NOT_FOUND)"  location: "JS frame :: resource://gre/modules/addons/XPIProvider.jsm :: loadExtensionState :: line 1596"  data: no] Stack trace: loadExtensionState()@resource://gre/modules/addons/XPIProvider.jsm:1596 < getInstallState()@resource://gre/modules/addons/XPIProvider.jsm:1631 < checkForChanges()@resource://gre/modules/addons/XPIProvider.jsm:3152 < startup()@resource://gre/modules/addons/XPIProvider.jsm:2246 < callProvider()@resource://gre/modules/AddonManager.jsm:271 < _startProvider()@resource://gre/modules/AddonManager.jsm:741 < startup()@resource://gre/modules/AddonManager.jsm:908 < startup()@resource://gre/modules/AddonManager.jsm:3122 < observe()@jar:file:///Applications/Firefox.app/Contents/Resources/omni.ja!/components/addonManager.js:65
+1505960715019	Marionette	INFO	Enabled via --marionette
+2017-09-20 22:25:16.283 plugin-container[87004:6874477] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xa237, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2017-09-20 22:25:16.295 plugin-container[87004:6874477] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xa603, name = 'com.apple.CFPasteboardClient'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+1505960716427	Marionette	INFO	Listening on port 54973
+JavaScript error: chrome://marionette/content/server.js, line 337: NS_ERROR_SOCKET_ADDRESS_IN_USE: Component returned failure code: 0x804b0036 (NS_ERROR_SOCKET_ADDRESS_IN_USE) [nsIServerSocket.initSpecialConnection]
+1505960716500	Marionette	WARN	TLS certificate errors will be ignored for this session
+1505960716534	Marionette	DEBUG	loaded listener.js
+1505960716553	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1505960717324	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1505960717325	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1505960717894	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "http://localhost:8080/"
+1505960717899	Marionette	DEBUG	Received DOM event "pageshow" for "http://localhost:8080/"
+1505960720520	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1505960720862	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1505960725324	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1505960730747	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1505960733856	Marionette	INFO	New connections will no longer be accepted
+1505960796184	geckodriver	INFO	geckodriver 0.19.0
+1505960796190	geckodriver	INFO	Listening on 127.0.0.1:55145
+1505960797374	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-profile" "/var/folders/l5/fw9ky5pn64z1973yw9x2n1bh0000gn/T/rust_mozprofile.g7saURkVIDP2"
+1505960797929	addons.xpi	WARN	Error parsing extensions state: [Exception... "Component returned failure code: 0x80520012 (NS_ERROR_FILE_NOT_FOUND) [amIAddonManagerStartup.readStartupData]"  nsresult: "0x80520012 (NS_ERROR_FILE_NOT_FOUND)"  location: "JS frame :: resource://gre/modules/addons/XPIProvider.jsm :: loadExtensionState :: line 1596"  data: no] Stack trace: loadExtensionState()@resource://gre/modules/addons/XPIProvider.jsm:1596 < getInstallState()@resource://gre/modules/addons/XPIProvider.jsm:1631 < checkForChanges()@resource://gre/modules/addons/XPIProvider.jsm:3152 < startup()@resource://gre/modules/addons/XPIProvider.jsm:2246 < callProvider()@resource://gre/modules/AddonManager.jsm:271 < _startProvider()@resource://gre/modules/AddonManager.jsm:741 < startup()@resource://gre/modules/AddonManager.jsm:908 < startup()@resource://gre/modules/AddonManager.jsm:3122 < observe()@jar:file:///Applications/Firefox.app/Contents/Resources/omni.ja!/components/addonManager.js:65
+1505960798462	Marionette	INFO	Enabled via --marionette
+2017-09-20 22:26:40.157 plugin-container[87013:6875737] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xa33b, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2017-09-20 22:26:40.174 plugin-container[87013:6875737] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xa603, name = 'com.apple.CFPasteboardClient'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+1505960800771	Marionette	INFO	Listening on port 55154
+JavaScript error: chrome://marionette/content/server.js, line 337: NS_ERROR_SOCKET_ADDRESS_IN_USE: Component returned failure code: 0x804b0036 (NS_ERROR_SOCKET_ADDRESS_IN_USE) [nsIServerSocket.initSpecialConnection]
+1505960800843	Marionette	WARN	TLS certificate errors will be ignored for this session
+1505960800882	Marionette	DEBUG	loaded listener.js
+1505960800902	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1505960801117	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1505960801118	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1505960801360	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "http://ec2-34-229-45-22.compute-1.amazonaws.com/"
+1505960801405	Marionette	DEBUG	Received DOM event "pageshow" for "http://ec2-34-229-45-22.compute-1.amazonaws.com/"
+1505960804106	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1505960805144	Marionette	INFO	New connections will no longer be accepted
+1505960961099	geckodriver	INFO	geckodriver 0.19.0
+1505960961110	geckodriver	INFO	Listening on 127.0.0.1:55265
+1505960962261	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-profile" "/var/folders/l5/fw9ky5pn64z1973yw9x2n1bh0000gn/T/rust_mozprofile.23YWAcmL8s4I"
+1505960962653	addons.xpi	WARN	Error parsing extensions state: [Exception... "Component returned failure code: 0x80520012 (NS_ERROR_FILE_NOT_FOUND) [amIAddonManagerStartup.readStartupData]"  nsresult: "0x80520012 (NS_ERROR_FILE_NOT_FOUND)"  location: "JS frame :: resource://gre/modules/addons/XPIProvider.jsm :: loadExtensionState :: line 1596"  data: no] Stack trace: loadExtensionState()@resource://gre/modules/addons/XPIProvider.jsm:1596 < getInstallState()@resource://gre/modules/addons/XPIProvider.jsm:1631 < checkForChanges()@resource://gre/modules/addons/XPIProvider.jsm:3152 < startup()@resource://gre/modules/addons/XPIProvider.jsm:2246 < callProvider()@resource://gre/modules/AddonManager.jsm:271 < _startProvider()@resource://gre/modules/AddonManager.jsm:741 < startup()@resource://gre/modules/AddonManager.jsm:908 < startup()@resource://gre/modules/AddonManager.jsm:3122 < observe()@jar:file:///Applications/Firefox.app/Contents/Resources/omni.ja!/components/addonManager.js:65
+1505960963033	Marionette	INFO	Enabled via --marionette
+2017-09-20 22:29:24.293 plugin-container[87025:6877359] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xa13b, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2017-09-20 22:29:24.296 plugin-container[87025:6877359] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xa403, name = 'com.apple.CFPasteboardClient'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+1505960964637	Marionette	INFO	Listening on port 55274
+JavaScript error: chrome://marionette/content/server.js, line 337: NS_ERROR_SOCKET_ADDRESS_IN_USE: Component returned failure code: 0x804b0036 (NS_ERROR_SOCKET_ADDRESS_IN_USE) [nsIServerSocket.initSpecialConnection]
+1505960964670	Marionette	WARN	TLS certificate errors will be ignored for this session
+1505960964703	Marionette	DEBUG	loaded listener.js
+1505960964724	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1505960964756	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1505960964756	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1505960965149	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "http://localhost:8080/"
+1505960965151	Marionette	DEBUG	Received DOM event "pageshow" for "http://localhost:8080/"
+1505960968713	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1505960969009	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1505960974546	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1505960979946	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1505960981302	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1505960986454	Marionette	INFO	New connections will no longer be accepted
+1505961373627	geckodriver	INFO	geckodriver 0.19.0
+1505961373638	geckodriver	INFO	Listening on 127.0.0.1:55487
+1505961375034	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-profile" "/var/folders/l5/fw9ky5pn64z1973yw9x2n1bh0000gn/T/rust_mozprofile.RPsCuvaajOwN"
+1505961375539	addons.xpi	WARN	Error parsing extensions state: [Exception... "Component returned failure code: 0x80520012 (NS_ERROR_FILE_NOT_FOUND) [amIAddonManagerStartup.readStartupData]"  nsresult: "0x80520012 (NS_ERROR_FILE_NOT_FOUND)"  location: "JS frame :: resource://gre/modules/addons/XPIProvider.jsm :: loadExtensionState :: line 1596"  data: no] Stack trace: loadExtensionState()@resource://gre/modules/addons/XPIProvider.jsm:1596 < getInstallState()@resource://gre/modules/addons/XPIProvider.jsm:1631 < checkForChanges()@resource://gre/modules/addons/XPIProvider.jsm:3152 < startup()@resource://gre/modules/addons/XPIProvider.jsm:2246 < callProvider()@resource://gre/modules/AddonManager.jsm:271 < _startProvider()@resource://gre/modules/AddonManager.jsm:741 < startup()@resource://gre/modules/AddonManager.jsm:908 < startup()@resource://gre/modules/AddonManager.jsm:3122 < observe()@jar:file:///Applications/Firefox.app/Contents/Resources/omni.ja!/components/addonManager.js:65
+1505961375926	Marionette	INFO	Enabled via --marionette
+2017-09-20 22:36:17.288 plugin-container[87060:6880827] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xa13b, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2017-09-20 22:36:17.291 plugin-container[87060:6880827] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0xa403, name = 'com.apple.CFPasteboardClient'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+1505961377601	Marionette	INFO	Listening on port 55496
+JavaScript error: chrome://marionette/content/server.js, line 337: NS_ERROR_SOCKET_ADDRESS_IN_USE: Component returned failure code: 0x804b0036 (NS_ERROR_SOCKET_ADDRESS_IN_USE) [nsIServerSocket.initSpecialConnection]
+1505961377667	Marionette	WARN	TLS certificate errors will be ignored for this session
+1505961377704	Marionette	DEBUG	loaded listener.js
+1505961377726	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1505961377745	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1505961377745	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1505961378251	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "http://localhost:8080/"
+1505961378254	Marionette	DEBUG	Received DOM event "pageshow" for "http://localhost:8080/"
+1505961380624	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1505961380940	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1505961386313	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1505961391700	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1505961393047	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1505961396140	Marionette	INFO	New connections will no longer be accepted
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
